@@ -1,0 +1,8 @@
+name: PlayerSpectate
+main: me.lavaiswatery.playerspectate.PlayerSpectate
+version: 1.0
+author: LavaisWatery
+commands:
+  spectate:
+    description: Spectate command.
+    aliases: spec
