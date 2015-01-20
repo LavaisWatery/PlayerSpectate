@@ -53,6 +53,22 @@ public class Listener_playerlistener implements Listener {
     }
 
     @EventHandler
+    public void onPlayerLogin(PlayerJoinEvent event) {
+        final Player player = event.getPlayer();
+        new BukkitRunnable() {
+            public void run() {
+                if(!player.hasPermission("playerspectate.seeplayers")) {
+                    for(String temp : pl.getInit().getSpectateManager().getSpectateList()) {
+                        if(Bukkit.getPlayer(temp) != null) {
+                            player.hidePlayer(Bukkit.getPlayer(temp));
+                        }
+                    }
+                }
+            }
+        }.runTaskLater(pl, 5L);
+    }
+
+    @EventHandler
     public void onPickupItems(PlayerPickupItemEvent event) {
         Player player = event.getPlayer();
         if(pl.getInit().getSpectateManager().isSpectating(player)) {
